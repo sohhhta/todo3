@@ -4,6 +4,7 @@ import java.util.List;
 
 public record TaskSearchEntity(
         String summary,
-        List<TaskStatus> status
+        List<TaskStatus> status,
+        String userId
 ) {
 }

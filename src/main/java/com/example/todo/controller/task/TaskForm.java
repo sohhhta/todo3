@@ -23,11 +23,11 @@ public record TaskForm (
         );
     }
 
-    public TaskEntity toEntity() {
-        return new TaskEntity(null, summary(), description(), TaskStatus.valueOf(status()));
+    public TaskEntity toEntity(String userId) {
+        return new TaskEntity(null, summary(), description(), TaskStatus.valueOf(status()), userId);
     }
 
-    public TaskEntity toEntity(long id) {
-        return new TaskEntity(id, summary(), description(), TaskStatus.valueOf(status()));
+    public TaskEntity toEntity(long id, String userId) {
+        return new TaskEntity(id, summary(), description(), TaskStatus.valueOf(status()), userId);
     }
 }

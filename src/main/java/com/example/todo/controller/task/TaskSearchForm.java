@@ -10,12 +10,12 @@ public record TaskSearchForm (
     String summary,
     List<String> status
 ){
-    public TaskSearchEntity toEntity(){
+    public TaskSearchEntity toEntity(String userId){
         var statusEntityList = Optional.ofNullable(status())
                 .map(statusList -> statusList.stream().map(TaskStatus::valueOf).toList())
                 .orElse(List.of());
 
-      return new TaskSearchEntity(summary(), statusEntityList);
+      return new TaskSearchEntity(summary(), statusEntityList, userId);
     }
 
     public TaskSearchDTO toDTO() {

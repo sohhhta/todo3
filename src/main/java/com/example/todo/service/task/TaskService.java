@@ -36,4 +36,12 @@ public class TaskService {
     public void delete(long id) {
         taskRepository.delete(id);
     }
+
+    /// 削除機能のために追加した内容
+    @Transactional
+    public void deleteAll(List<Long> ids) {
+        if (ids != null && !ids.isEmpty()) {
+            taskRepository.deleteAll(ids);
+        }
+    }
 }

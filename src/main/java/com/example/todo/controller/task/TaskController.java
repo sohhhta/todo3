@@ -2,11 +2,15 @@ package com.example.todo.controller.task;
 
 import com.example.todo.service.task.TaskService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -16,14 +20,25 @@ public class TaskController{
     private final TaskService taskService;
 
     @GetMapping
-    public String list(TaskSearchForm searchForm, Model model){
-        var taskList = taskService.find(searchForm.toEntity())
+    /// 削除機能のために記述した内容
+    public String list(TaskSearchForm searchForm,
+                       @RequestParam(name = "mode", required = false) String mode,
+                       @AuthenticationPrincipal UserDetails user,
+                       Model model){
+        var taskList = taskService.find(searchForm.toEntity(user.getUsername()))
                 .stream()
                 .map(TaskDTO::toDTO)
                 .toList();
         model.addAttribute("taskList", taskList);
         model.addAttribute("searchDTO", searchForm.toDTO());
+        /// 受け取った mode の値（"DELETE" または null）を、画面に渡す。
+        model.addAttribute("mode", mode);
         return "tasks/list";
+    }
+
+    @GetMapping("/login")
+    public String loginRedirect() {
+        return "redirect:/login";
     }
 
     @GetMapping("/{id}")
@@ -45,11 +60,15 @@ public class TaskController{
 
     // POST /tasks
     @PostMapping
-    public String create(@Validated TaskForm form, BindingResult bindingResult, Model model){
+    public String create(@Validated TaskForm form, BindingResult bindingResult, @AuthenticationPrincipal UserDetails user, Model model){
         if (bindingResult.hasErrors()){
             return showCreationForm(form, model);
         }
-        taskService.create(form.toEntity());
+        // ユーザー情報のチェックを追加
+        if (user == null || user.getUsername() == null || user.getUsername().isEmpty()) {
+            return "redirect:/login";
+        }
+        taskService.create(form.toEntity(user.getUsername()));
         return "redirect:/tasks";
     }
 
@@ -69,6 +88,7 @@ public class TaskController{
             @PathVariable("id") long id,
             @Validated @ModelAttribute TaskForm form,
             BindingResult bindingResult,
+            @AuthenticationPrincipal UserDetails user,
             Model model
     ){
         if (bindingResult.hasErrors()){
@@ -76,13 +96,22 @@ public class TaskController{
             return "/tasks/form";
         }
 
-        var entity = form.toEntity(id);
+        var entity = form.toEntity(id, user.getUsername());
         taskService.update(entity);
         return "redirect:/tasks/{id}";
     }
 
     @DeleteMapping("{id}")
     public String delete(@PathVariable("id") long id){
+        return "redirect:/tasks";
+    }
+
+    /// 削除機能のために追加した内容
+    @PostMapping("/deleteList")
+    public String deleteList(@RequestParam(name = "deleteIds", required = false) List<Long> deleteIds) {
+        if (deleteIds != null) {
+            taskService.deleteAll(deleteIds);
+        }
         return "redirect:/tasks";
     }
 }
