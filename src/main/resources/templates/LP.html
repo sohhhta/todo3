@@ -6,8 +6,10 @@
 >
 <head>
     <title>TOP</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">　//アイコンを表示するための内容
+    <link rel="stylesheet" th:href="@{/css/LP.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">　<!-- アイコンを表示するための内容 -->
+    <!-- Thymeleafの @{/js/modal.js} でSpring Bootの静的リソースパスを解決 -->
+    <script th:src="@{/js/modal.js}"></script>
 </head>
 <body>
 <section layout:fragment="content">
@@ -27,7 +29,7 @@
         <div class="container">
         <div class="row">
             <div class="col-md-6 mb-3">
-                <div class="card">
+                <div class="card" data-video-url="/videos/task-add.mp4">
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-plus-circle"></i>タスクの追加</h5>
                         <p class="card-text">新しいタスクを作成してリストに追加できます。タイトルと詳細を入力して効率的に管理しましょう。</p>
@@ -35,7 +37,7 @@
                 </div>
             </div>
             <div class="col-md-6 mb-3">
-                <div class="card">
+                <div class="card" data-video-url="/videos/task-search.mp4">
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-search"></i>タスクの検索</h5>
                         <p class="card-text">キーワードやステータスでタスクを検索できます。必要なタスクを素早く見つけて作業を進めましょう。</p>
@@ -43,7 +45,7 @@
                 </div>
             </div>
             <div class="col-md-6 mb-3">
-                <div class="card">
+                <div class="card" data-video-url="/videos/task-edit.mp4">
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-edit"></i>タスクの更新</h5>
                         <p class="card-text">既存のタスクの内容を編集できます。進捗状況や詳細を更新して最新の状態を維持しましょう。</p>
@@ -51,7 +53,7 @@
                 </div>
             </div>
             <div class="col-md-6 mb-3">
-                <div class="card">
+                <div class="card" data-video-url="/videos/task-delete.mp4">
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-trash-alt"></i>タスクの削除</h5>
                         <p class="card-text">不要になったタスクを削除できます。リストを整理して管理しやすくしましょう。</p>
@@ -59,6 +61,26 @@
                 </div>
             </div>
         </div>
+        </div>
+    </div>
+
+    <!-- 機能紹介する動画モーダル -->
+     <!-- 背景の半透明レイヤー -->
+    <div id="videoModal" class="modal-overlay" style="display: none;">
+        <!-- モーダル本体の白いボックス -->
+        <div class="modal-content">
+            <!-- タイトルと閉じるボタン -->
+            <div class="modal-header">
+                <h5 class="modal-title">機能デモ</h5>
+                <button type="button" class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <!-- 動画再生の箱 -->
+            <div class="modal-body">
+                <video id="demoVideo" controls width="100%">
+                     <!-- alt属性の記述 -->
+                    お使いのブラウザはvideoタグをサポートしていません。
+                </video>
+            </div>
         </div>
     </div>
 </section>

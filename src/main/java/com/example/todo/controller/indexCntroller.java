@@ -3,6 +3,7 @@ package com.example.todo.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -12,14 +13,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-@Controller("/")
+@Controller
+@RequestMapping("/")
 public class indexCntroller {
 
-    //http:localhost:8080 → "Hello,world!"
-    //GET / → "Hello, world!"
+    //http:localhost:8080 → LPへ遷移
     @GetMapping
     public String index(){
-        return "index";
+        return "LP";
     }
 
     @PostMapping("/upload")
