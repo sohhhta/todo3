@@ -1,44 +1,67 @@
-/* 背景設定 */
+/* 背景の設定 */
 body {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* 背景のグラデーション */
-    min-height: 100vh; /* 高さの100%を確保するための内容 */
+    /* 背景の色をグラデーションにする */
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+/* 背景の高さを画面いっぱいにする */
+body {
+    min-height: 100vh;
 }
 
 /* TOP画像を背景にする設定 */
+/* ヒーローセクションの設定 */
 .hero-section {
-    /* 中に入る absolute 要素の位置基準になる */
+    /* 位置を相対的にする */
     position: relative;
+    /* 幅を100%にする */
     width: 100%;
+    /* 高さを400pxにする */
     height: 400px;
+    /* 下に40pxの余白を入れる */
     margin-bottom: 40px;
-    /* 画像はみ出た部分を隠す */
+    /* 画像がはみ出た部分を隠す */
     overflow: hidden;
+    /* 角を丸くする */
     border-radius: 15px;
 }
 
+/* ヒーロー画像の設定 */
 .hero-image {
-    /* 上から順に積み重ねる */
+    /* 位置を絶対的にする */
     position: absolute;
+    /* 幅を100%にする */
     width: 100%;
+    /* 高さを100%にする */
     height: 100%;
+    /* 画像をカバーするようにする */
     object-fit: cover;
+    /* 画像の位置を中央にする */
     object-position: center;
 }
 
+/* ヒーローオーバーレイの設定 */
 .hero-overlay {
+    /* 位置を絶対的にする */
     position: absolute;
+    /* 幅を100%にする */
     width: 100%;
+    /* 高さを100%にする */
     height: 100%;
+    /* 背景を半透明の黒にする */
     background: rgba(0, 0, 0, 0.5);
 }
 
+/* ヒーローコンテンツの設定 */
 .hero-content {
+    /* 位置を絶対的にする */
     position: absolute;
+    /* 幅を100%にする */
     width: 100%;
+    /* 高さを100%にする */
     height: 100%;
-    /* flexboxを使用して中央に配置 */
+    /* flexboxを使って中央に配置する */
     display: flex;
-    /* 子要素を縦に配置 */
+    /* 子要素を縦に配置する */
     flex-direction: column;
     /* 縦方向の中央揃え */
     justify-content: center;
@@ -46,148 +69,245 @@ body {
     align-items: center;
     /* テキストを中央揃え */
     text-align: center;
+    /* 文字の色を白にする */
     color: white;
+    /* z-indexを10にする */
     z-index: 10;
 }
 
+/* ヒーローコンテンツ内のh1の設定 */
 .hero-content h1 {
+    /* フォントサイズを48pxにする */
     font-size: 48px;
+    /* 下に15pxの余白を入れる */
     margin-bottom: 15px;
+    /* フォントを太くする */
     font-weight: bold;
+    /* テキストに影をつける */
     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
 
+/* ヒーローサブタイトルの設定 */
 .hero-subtitle {
+    /* フォントサイズを20pxにする */
     font-size: 20px;
+    /* 下に30pxの余白を入れる */
     margin-bottom: 30px;
+    /* テキストに影をつける */
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
 
+/* 大きいボタンの設定 */
 .btn-lg {
+    /* パディングを15px 40pxにする */
     padding: 15px 40px;
+    /* フォントサイズを18pxにする */
     font-size: 18px;
+    /* 角を丸くする */
     border-radius: 50px;
 }
 
-/* カードデザインで機能説明するための大枠デザイン設定 */
+/* 機能説明のセクションの設定 */
+/* 機能説明セクションの設定 */
 .features-section {
+    /* 背景色を白にする */
     background-color: white;
+    /* パディングを60px 30pxにする */
     padding: 60px 30px;
+    /* 下に40pxの余白を入れる */
     margin-bottom: 40px;
+    /* 角を丸くする */
     border-radius: 15px;
+    /* 影をつける */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* カードデザインの設定 */
+/* カードの設定 */
+/* カードの設定 */
 .card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* ホバー時のアニメーション効果 */
+    /* ホバー時のアニメーション効果 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* ボーダーをなしにする */
     border: none;
+    /* 角を丸くする */
     border-radius: 12px;
+    /* 影をつける */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
+/* カードのホバー時の設定 */
 .card:hover {
-    transform: translateY(-10px); /* ホバー時にカードが少し浮き上がるようにするための実際の内容 */
+    /* ホバー時に少し浮き上がるようにする */
+    transform: translateY(-10px);
+    /* 影を大きくする */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
+/* カードタイトルの設定 */
 .card-title {
+    /* 文字の色を#333にする */
     color: #333;
+    /* フォントを太くする */
     font-weight: 600;
+    /* flexboxを使ってアイコンとテキストを並べる */
     display: flex;
+    /* アイコンとテキストを中央揃え */
     align-items: center;
 }
 
-/* モーダルのスタイル */
+/* モーダルの背景の設定 */
+/* モーダルオーバーレイの設定 */
 .modal-overlay {
-    /* 画面全体を覆う半透明の背景レイヤー */
+    /* 位置を固定する */
     position: fixed;
+    /* 上から0にする */
     top: 0;
+    /* 左から0にする */
     left: 0;
+    /* 幅を100%にする */
     width: 100%;
+    /* 高さを100%にする */
     height: 100%;
+    /* 背景を半透明の黒にする */
     background-color: rgba(0, 0, 0, 0.7);
+    /* flexboxを使って中央に配置する */
     display: flex;
+    /* 横方向の中央揃え */
     justify-content: center;
+    /* 縦方向の中央揃え */
     align-items: center;
-    /* 他の要素より前面に表示 */
+    /* z-indexを1000にする */
     z-index: 1000;
 }
 
+/* モーダルコンテンツの設定 */
 .modal-content {
+    /* 背景色を白にする */
     background-color: white;
+    /* 角を丸くする */
     border-radius: 10px;
+    /* 幅を90%にする */
     width: 90%;
+    /* 最大幅を600pxにする */
     max-width: 600px;
+    /* 最大高さを80vhにする */
     max-height: 80vh;
+    /* オーバーフローを隠す */
     overflow: hidden;
+    /* 影をつける */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    /* アニメーションをつける */
     animation: modalFadeIn 0.3s ease-out;
 }
 
+/* モーダルフェードインアニメーションの設定 */
 @keyframes modalFadeIn {
     from {
+        /* 透明にする */
         opacity: 0;
+        /* 少し小さくする */
         transform: scale(0.9);
     }
     to {
+        /* 不透明にする */
         opacity: 1;
+        /* 通常のサイズにする */
         transform: scale(1);
     }
 }
 
+/* モーダルヘッダーの設定 */
 .modal-header {
+    /* パディングを20pxにする */
     padding: 20px;
+    /* 下にボーダーをつける */
     border-bottom: 1px solid #eee;
+    /* flexboxを使ってタイトルとボタンを並べる */
     display: flex;
+    /* タイトルを左、ボタンを右にする */
     justify-content: space-between;
+    /* 中央揃え */
     align-items: center;
 }
 
+/* モーダルタイトルの設定 */
 .modal-title {
+    /* マージンを0にする */
     margin: 0;
+    /* 文字の色を#333にする */
     color: #333;
+    /* フォントサイズを1.5remにする */
     font-size: 1.5rem;
+    /* フォントを太くする */
     font-weight: 600;
 }
 
+/* 閉じるボタンの設定 */
 .close-btn {
+    /* 背景をなしにする */
     background: none;
+    /* ボーダーをなしにする */
     border: none;
+    /* フォントサイズを2remにする */
     font-size: 2rem;
+    /* 文字の色を#666にする */
     color: #666;
+    /* カーソルをポインターにする */
     cursor: pointer;
+    /* パディングを0にする */
     padding: 0;
+    /* 幅を30pxにする */
     width: 30px;
+    /* 高さを30pxにする */
     height: 30px;
+    /* flexboxを使って中央に配置する */
     display: flex;
+    /* 横方向の中央揃え */
     align-items: center;
+    /* 縦方向の中央揃え */
     justify-content: center;
+    /* 角を丸くする */
     border-radius: 50%;
+    /* ホバー時のアニメーション */
     transition: background-color 0.2s;
 }
 
+/* 閉じるボタンのホバー時の設定 */
 .close-btn:hover {
+    /* 背景色を#f0f0f0にする */
     background-color: #f0f0f0;
+    /* 文字の色を#333にする */
     color: #333;
 }
 
+/* モーダルボディの設定 */
 .modal-body {
+    /* パディングを20pxにする */
     padding: 20px;
 }
 
+/* モーダルボディ内の動画の設定 */
 .modal-body video {
+    /* 幅を100%にする */
     width: 100%;
+    /* 角を丸くする */
     border-radius: 5px;
 }
 
+/* カードタイトル内のアイコンの設定 */
 .card-title i {
+    /* 右に10pxの余白を入れる */
     margin-right: 10px;
+    /* 文字の色を#007bffにする */
     color: #007bff;
+    /* フォントサイズを24pxにする */
     font-size: 24px;
 }
 
+/* カードテキストの設定 */
 .card-text {
+    /* 文字の色を#666にする */
     color: #666;
+    /* 行の高さを1.6にする */
     line-height: 1.6;
 }
